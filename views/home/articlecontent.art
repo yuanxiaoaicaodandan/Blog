@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stories - Single post default</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.png">
+    <!-- NewsBoard CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/widgets.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+    {{include './common/header.art'}}
+    <!-- Start Main content -->
+    <main class="bg-grey pb-30">
+        <div class="container single-content">
+            <div class="entry-header entry-header-style-1 mb-50 pt-50">
+                <h1 class="entry-title mb-50 font-weight-900">
+                    {{article.title}}
+                </h1>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="entry-meta align-items-center meta-2 font-small color-muted">
+                            <p class="mb-5">
+                                By <a href="javascript:;"><span class="author-name font-weight-bold">{{article.author.username}}</span></a>
+                            </p>
+                            <span class="mr-10"> {{article.author.email}}</span>
+                            <span class="has-dot">  {{dateFormat(article.publishDate,'yyyy-mm-dd')}}</span>
+                        </div>
+                    </div>
+               
+                </div>
+            </div>
+            <!--end single header-->
+            <figure class="image mb-30 m-auto text-center border-radius-10">
+                <img class="border-radius-10" src="{{article.cover}}" alt="post-title" style="width:600px;height:400px"/>
+            </figure>
+            <!--figure-->
+            <article class="entry-wraper mb-50">
+                <div class="excerpt mb-30">
+                    <p>{{article.content}} </p>
+                </div>
+
+                <!--Comments-->
+                <div class="comments-area">
+                    <div class="widget-header-2 position-relative mb-30">
+                        <h5 class="mt-5 mb-30">评论</h5>
+                    </div>
+					{{each comments}}
+                    <div class="comment-list wow fadeIn animated">
+                        <div class="single-comment justify-content-between d-flex">
+                            <div class="user justify-content-between d-flex">
+                                <div class="desc">
+                                    <p class="comment">
+                                       {{$value.content}}
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <div class="d-flex align-items-center">
+                                            <h5>
+                                                <a href="#">{{$value.uid.username}}:</a>
+                                            </h5>
+                                            <p class="date">{{dateFormat($value.time,'yyyy-mm-dd')}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                                        </div>
+                                        <div class="reply-btn">
+                                            <a href="#" class="btn-reply">Reply</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+					{{/each}}
+                <!--comment form-->
+                <div class="comment-form wow fadeIn animated">
+                    <div class="widget-header-2 position-relative mb-30">
+                        <h5 class="mt-5 mb-30">Leave a Reply</h5>
+                    </div>
+                    <form class="form-contact comment_form" action="/home/comment" id="commentForm" method="post">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <textarea class="form-control w-100" name="content" id="comment" cols="30" rows="9" placeholder="Write Comment"></textarea>
+                                </div>
+								<input type="hidden" name="uid" value="{{@userInfo._id}}">
+								<input type="hidden" name="aid" value="{{@article._id}}">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="btn button button-contactForm">Post Comment</button>
+                        </div>
+                    </form>
+                </div>
+            </article>
+        </div>
+        <!--container-->
+    </main>
+    <!-- End Main content -->
+    <!--site-bottom-->
+   
+
+    <!-- End Footer -->
+    <div class="dark-mark"></div>
+    <!-- Vendor JS-->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/vendor/popper.min.js"></script>
+    <script src="./assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./assets/js/vendor/jquery.slicknav.js"></script>
+    <script src="./assets/js/vendor/slick.min.js"></script>
+    <script src="./assets/js/vendor/wow.min.js"></script>
+    <script src="./assets/js/vendor/jquery.ticker.js"></script>
+    <script src="./assets/js/vendor/jquery.vticker-min.js"></script>
+    <script src="./assets/js/vendor/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/vendor/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/vendor/jquery.sticky.js"></script>
+    <script src="./assets/js/vendor/perfect-scrollbar.js"></script>
+    <script src="./assets/js/vendor/waypoints.min.js"></script>
+    <script src="./assets/js/vendor/jquery.theia.sticky.js"></script>
+    <!-- NewsBoard JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

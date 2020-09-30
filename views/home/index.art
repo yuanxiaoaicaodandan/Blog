@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stories - Personal Blog HTML Template</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.png">
+    <!-- NewsBoard CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/widgets.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+	<style>
+		#fenye{
+			position: absolute;
+			margin-left: 120px;
+		}
+	</style>
+</head>
+
+<body>
+     {{include './common/header.art'}}
+    <!-- Start Main content -->
+    <main>       
+     
+        <!-- End feature -->
+        <div class="container">
+            <div class="hot-tags pt-30 pb-30 font-small align-self-center">
+                <div class="widget-header-3">
+                    <div class="row align-self-center">
+                        <div class="col-md-4 align-self-center">
+                            <h5 class="widget-title">精选博客</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="loop-grid mb-30">
+                <div class="row">
+					{{each result.records}}
+                    <article class="col-lg-4 col-md-6 mb-30 wow fadeInUp animated" data-wow-delay="0.2s">
+                        <div class="post-card-1 border-radius-10 hover-up">
+                            <div class="post-thumb thumb-overlay img-hover-slide position-relative" style="">
+							  <img src="{{$value.cover}}" style="width:350px; height:230px">
+                                <a class="img-link" href="#"></a>
+                            </div>
+								
+                            <div class="post-content p-30">
+							<div class="entry-meta meta-0 font-small mb-10">
+                                    <a href="/home/content?id={{@$value._id}}"><span class="post-cat text-warning">作者：{{$value.author.username}}</span></a>
+								</div>
+                                <div class="d-flex post-card-content">
+                                    <h5 class="post-title mb-20 font-weight-900">
+                                        <a href="/home/content?id={{@$value._id}}">{{$value.title}}</a>
+                                    </h5>
+                                    <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                        <span class="post-on">{{$value.author.username}}</span>
+                                        <span class="post-by has-dot">{{dateFormat($value.publishDate,'yyyy-mm-dd')}}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </article>
+                 {{/each}}
+                </div>
+            </div>
+        </div>
+         <div class="pagination-area mb-30 wow fadeInUp animated" id="fenye">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+								{{if result.page>1}}
+                                <li class="page-item"><a class="page-link" href="/home/index?page={{result.page-1}}"><i class="elegant-icon arrow_left"></i></a></li>
+								{{/if}}
+								{{each result.display}}
+                                <li class="page-item"><a class="page-link" href="/home/index?page={{$value}}">{{$value}}</a></li>
+								{{/each}}
+								{{if result.page<result.pages}}
+                                <li class="page-item"><a class="page-link" href="/home/index?page={{result.page-0+1}}"><i class="elegant-icon arrow_right"></i></a></li>
+								{{/if}}
+                            </ul>
+                        </nav>
+          </div>
+    </main>
+    <!-- End Main content -->
+    <!--site-bottom-->
+    <div class="site-bottom pt-50 pb-50">
+        <div class="container">
+        
+            <div class="sidebar-widget widget-latest-posts mb-30 mt-20 wow fadeInUp animated">
+                <div class="widget-header-2 position-relative mb-30">
+                    <h5 class="mt-5 mb-30">精品博客</h5>
+                </div>
+				
+                <div class="carausel-3-columns">
+                   {{each result.records}}
+                <div class="{{carausel-3-columns}}">
+                    <div class="carausel-3-columns-item d-flex bg-grey has-border p-25 hover-up-2 transition-normal border-radius-5">
+                        <div class="post-thumb post-thumb-64 d-flex mr-15 border-radius-5 img-hover-scale overflow-hidden">
+                            <a class="color-white" href="/home/content?id={{@$value._id}}">
+                                <img src="{{$value.cover}}" alt="">
+                            </a>
+                        </div>
+					
+                        <div class="post-content media-body">
+                            <h6> <a href="/home/content?id={{@$value._id}}">{{$value.title}}</a> </h6>
+                            <p class="text-muted font-small">{{$value.author.username}}</p>
+                        </div>
+                    </div>
+                </div>
+				{{/each}}
+                </div>
+            </div>
+        </div>
+        <!--container-->
+    </div>
+  
+    <!-- End Footer -->
+    <div class="dark-mark"></div>
+    <!-- Vendor JS-->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/vendor/popper.min.js"></script>
+    <script src="./assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./assets/js/vendor/jquery.slicknav.js"></script>
+    <script src="./assets/js/vendor/slick.min.js"></script>
+    <script src="./assets/js/vendor/wow.min.js"></script>
+    <script src="./assets/js/vendor/jquery.ticker.js"></script>
+    <script src="./assets/js/vendor/jquery.vticker-min.js"></script>
+    <script src="./assets/js/vendor/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/vendor/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/vendor/jquery.sticky.js"></script>
+    <script src="./assets/js/vendor/perfect-scrollbar.js"></script>
+    <script src="./assets/js/vendor/waypoints.min.js"></script>
+    <script src="./assets/js/vendor/jquery.theia.sticky.js"></script>
+    <!-- NewsBoard JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>

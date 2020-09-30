@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>Stories -Page Author</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" type="image/x-icon" href="assets/imgs/theme/favicon.png">
+    <!-- NewsBoard CSS  -->
+    <link rel="stylesheet" href="assets/css/style.css">
+    <link rel="stylesheet" href="assets/css/widgets.css">
+    <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+     {{include './common/header.art'}}
+    <!-- Start Main content -->
+    <main class="bg-grey pt-50 pb-50">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <!--author box-->
+                    <div class="author-bio mb-50 bg-white p-30 border-radius-10">
+
+                        <div class="author-info">
+                            <h3 class="font-weight-900"><span class="vcard author"><span class="fn"><a href="javascript:;" title="Posts by Steven" rel="author">{{userInfo&&userInfo.username}}</a></span></span>
+                            </h3>
+                            <h5 class="text-muted">{{userInfo&&userInfo.email}}</h5>
+                            <div class="author-description text-muted">我的博客列表</div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-8">
+                  
+                    <div class="post-module-3">
+                        <div class="loop-list loop-list-style-1">
+						{{each articles.records}}
+                            <article class="hover-up-2 transition-normal wow fadeInUp animated">
+                                <div class="row mb-40 list-style-2">
+                                    <div class="col-md-4">
+                                        <div class="post-thumb position-relative border-radius-5">
+                                            <div class="img-hover-slide border-radius-5 position-relative" >
+                                              <img src="{{$value.cover}}" style="width:250px; height:150px">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-8 align-self-center">
+                                        <div class="post-content">
+                                            <div class="entry-meta meta-0 font-small mb-10">
+                                            </div>
+                                            <h5 class="post-title font-weight-900 mb-20">
+                                                <a href="/home/content?id={{@$value._id}}">{{$value.title}}</a>
+                                                <span class="post-format-icon"><i class="elegant-icon icon_star_alt"></i></span>
+                                            </h5>
+                                            <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                                <span class="post-on">{{$value.author.username}}</span>
+                                                <span class="time-reading has-dot">{{dateFormat($value.publishDate,'yyyy-mm-dd')}}</span>>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </article>
+						{{/each}}
+                        </div>
+                    </div>
+                    <div class="pagination-area mb-30 wow fadeInUp animated">
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination justify-content-start">
+								{{if articles.page>1}}
+								 <li class="page-item"><a class="page-link" href="/home/person?page={{articles.page-1}}"><i class="elegant-icon arrow_left"></i></a></li>
+								{{/if}}
+                               
+								{{each articles.display}}
+                                <li class="page-item"><a class="page-link" href="/home/person?page={{$value}}">{{$value}}</a></li>
+								{{/each}}
+								{{if articles.page<articles.pages}}
+								<li class="page-item"><a class="page-link" href="/home/person?page={{articles.page-0+1}}"><i class="elegant-icon arrow_right"></i></a></li>
+								{{/if}}
+                                
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-lg-4 primary-sidebar sticky-sidebar">
+                    <div class="widget-area">
+                        <div class="sidebar-widget widget-latest-posts mb-50 wow fadeInUp animated">
+                            <div class="widget-header-2 position-relative mb-30">
+                                <h5 class="mt-5 mb-30">Most popular</h5>
+                            </div>
+                            <div class="post-block-list post-module-1">
+                                <ul class="list-post">
+                                    <li class="mb-30 wow fadeInUp animated">
+                                        <div class="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
+                                            <div class="post-content media-body">
+                                                <h6 class="post-title mb-15 text-limit-2-row font-medium"><a href="javascript:;">Spending Some Quality Time with Kids? It’s Possible</a></h6>
+                                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                                    <span class="post-on">05 August</span>
+                                                    <span class="post-by has-dot">150 views</span>
+                                                </div>
+                                            </div>
+                                            <div class="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
+                                                <a class="color-white"href="javascript:;">
+                                                    <img src="assets/imgs/news/thumb-6.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="mb-30 wow fadeInUp animated">
+                                        <div class="d-flex bg-white has-border p-25 hover-up transition-normal border-radius-5">
+                                            <div class="post-content media-body">
+                                                <h6 class="post-title mb-15 text-limit-2-row font-medium"><a href="javascript:;">Relationship Podcasts are Having “That” Talk</a></h6>
+                                                <div class="entry-meta meta-1 float-left font-x-small text-uppercase">
+                                                    <span class="post-on">12 August</span>
+                                                    <span class="post-by has-dot">6k views</span>
+                                                </div>
+                                            </div>
+                                            <div class="post-thumb post-thumb-80 d-flex ml-15 border-radius-5 img-hover-scale overflow-hidden">
+                                                <a class="color-white" href="javascript:;">
+                                                    <img src="assets/imgs/news/thumb-7.jpg" alt="">
+                                                </a>
+                                            </div>
+                                        </div>
+                                    </li>
+                                 
+                                </ul>
+                            </div>
+                        </div>
+                 
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    <!-- End Main content -->
+    <!-- Footer Start-->
+    
+    <!-- End Footer -->
+    <div class="dark-mark"></div>
+    <!-- Vendor JS-->
+    <script src="./assets/js/vendor/modernizr-3.5.0.min.js"></script>
+    <script src="./assets/js/vendor/jquery-1.12.4.min.js"></script>
+    <script src="./assets/js/vendor/popper.min.js"></script>
+    <script src="./assets/js/vendor/bootstrap.min.js"></script>
+    <script src="./assets/js/vendor/jquery.slicknav.js"></script>
+    <script src="./assets/js/vendor/slick.min.js"></script>
+    <script src="./assets/js/vendor/wow.min.js"></script>
+    <script src="./assets/js/vendor/jquery.ticker.js"></script>
+    <script src="./assets/js/vendor/jquery.vticker-min.js"></script>
+    <script src="./assets/js/vendor/jquery.scrollUp.min.js"></script>
+    <script src="./assets/js/vendor/jquery.nice-select.min.js"></script>
+    <script src="./assets/js/vendor/jquery.magnific-popup.js"></script>
+    <script src="./assets/js/vendor/jquery.sticky.js"></script>
+    <script src="./assets/js/vendor/perfect-scrollbar.js"></script>
+    <script src="./assets/js/vendor/waypoints.min.js"></script>
+    <script src="./assets/js/vendor/jquery.theia.sticky.js"></script>
+    <!-- NewsBoard JS -->
+    <script src="./assets/js/main.js"></script>
+</body>
+
+</html>
